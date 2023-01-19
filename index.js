@@ -18,13 +18,15 @@ for(var i=0; i<numberOfDrumButtons;i++){
 
 function handleClick(){
  var buttonInnerHtml = this.innerHTML;
- return makeSound(buttonInnerHtml);
+  makeSound(buttonInnerHtml);
+  buttonAnimation(buttonInnerHtml);
 }
 
 //for keyboard
  addEventListener("keydown",function(event){
   var key = event.key;
-  return makeSound(key);
+   makeSound(key);
+    buttonAnimation(key);
 })
 
 //function to select sound
@@ -66,4 +68,13 @@ function makeSound(expression){
       break;
 
   }
+}
+
+function buttonAnimation(currentKey){
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  },100);
+
 }
